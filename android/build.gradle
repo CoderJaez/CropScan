@@ -8,6 +8,7 @@ buildscript {
         kotlinVersion = "1.8.0"
     }
     repositories {
+
         google()
         mavenCentral()
     }
@@ -16,6 +17,14 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
     }
+
+    allprojects {
+    repositories {
+        maven {
+            url "$rootDir/../node_modules/expo-camera/android/maven"
+        }
+    }
+}
 }
 
 apply plugin: "com.facebook.react.rootproject"

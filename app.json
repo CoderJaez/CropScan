@@ -1,4 +1,14 @@
 {
   "name": "CropScan",
-  "displayName": "CropScan"
+  "displayName": "CropScan",
+  "expo": {
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ]
+  }
 }

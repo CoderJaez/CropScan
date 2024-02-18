@@ -5,114 +5,102 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
+  Pressable,
   View,
+  Image,
 } from 'react-native';
-
+import {Camera, CameraType, WhiteBalance} from 'expo-camera';
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  convertBase64ToTensor,
+  getModel,
+  startPrediction,
+} from './src/helpers/tensor-helper';
+import {LayersModel} from '@tensorflow/tfjs';
+import {decodeJpeg, fetch} from '@tensorflow/tfjs-react-native';
+import {cropPicture} from './src/helpers/image-helper';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+function App(): React.JSX.Element {
+  const [model, setModel] = useState<LayersModel | null>();
+  const [permission, requestPermission] = Camera.useCameraPermissions();
+  // const {hasPermission, requestPermission} = useCameraPermission();
+  const camera = useRef<Camera>(null);
+  const RESULT_MAPPING = ['Bacterial Blight', 'Blast', 'Brownspot', 'Tungro'];
+  const onTakePicture = async () => {
+    console.log('Taking photo');
+    try {
+      const imageData = await camera.current?.takePictureAsync({base64: true});
+      processImagePrediction(imageData);
+    } catch (error) {
+      console.log('Error taking photo: ', error);
+    }
+  };
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const processImagePrediction = async (base64Image: any) => {
+    const croppedData = await cropPicture(base64Image, 200);
+    const tensor = await convertBase64ToTensor(croppedData?.base64);
+
+    const prediction = await startPrediction(model, tensor);
+    const highestPrediction = prediction.indexOf(
+      Math.max.apply(null, prediction),
+    );
+    console.log(prediction);
+    console.log(RESULT_MAPPING[highestPrediction]);
+  };
+
+  useEffect(() => {
+    if (!permission) requestPermission();
+  }, [permission]);
+
+  async function setupModel() {
+    const model = await getModel();
+    setModel(model);
+  }
+
+  useEffect(() => {
+    setupModel();
+
+    return () => {
+      setModel(null);
+    };
+  }, []);
+
+  // if (!device) return <Text>Camera Device Not Found.</Text>;
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={{flex: 1}}>
+      {/* <Camera
+        ref={camera}
+        device={device}
+        isActive={true}
+        style={{flex: 1}}
+        photo={true}
+      /> */}
+
+      <Camera
+        ref={camera}
+        style={{flex: 1}}
+        type={CameraType.back}
+        autoFocus={true}></Camera>
+      <Pressable
+        onPress={onTakePicture}
+        style={{
+          backgroundColor: 'red',
+          width: 75,
+          height: 75,
+          borderRadius: 75,
+          padding: 10,
+          left: 150,
+          top: 500,
+          position: 'absolute',
+        }}
+      />
     </View>
   );
 }
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
