@@ -1,5 +1,5 @@
-import {Dimensions} from 'react-native';
 import * as ImageManipulator from 'expo-image-manipulator';
+import {Dimensions} from 'react-native';
 
 const {height: DEVICE_HEIGHT, width: DEVICE_WIDTH} = Dimensions.get('window');
 

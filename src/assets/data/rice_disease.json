@@ -1,0 +1,45 @@
+[{
+    "disease":"Bacterial Blight",
+    "title":"Prevent and manage bacterial blight",
+    "prevention": [
+        "Use balanced amounts of plant nutrients, especially nitrogen.",
+        "Ensure good drainage of fields (in conventionally flooded crops) and nurseries.",
+        "Keep fields clean. Remove weed hosts and plow under rice stubble, straw, rice ratoons and volunteer seedlings, which can serve as hosts of bacteria.",
+        "disease agents in the soil and plant residues."
+    ]
+},{
+    "disease":"Brownspot",
+    "title":"Improving soil fertility is the first step in managing brown spot. To do this:",
+    "prevention":[
+        "Monitor soil nutrients regularly","Apply required fertilizers for soils that are low in silicon, apply calcium silicate slag before planting",
+        "Fertilizers, however, can be costly and may take many cropping seasons before becoming effective.", 
+        "Use resistant varieties.",
+        "Contact your local agriculture office for up-to-date lists of varieties available.",
+        "Use fungicides (e.g., iprodione, propiconazole, azoxystrobin, trifloxystrobin, and carbendazim) as seed treatments.",
+        "Treat seeds with hot water (53−54°C) for 10−12 minutes before planting, to control primary infection at the seedling stage.",
+        "To increase effectiveness of treatment, pre-soak seeds in cold water for eight hours."
+    ]
+},{
+    "disease":"Blast",
+    "title":"Prevent and manage blast infection",
+    "prevention":[
+        "Adjust planting time. Sow seeds early, when possible, after the onset of the rainy season.",
+        "Split nitrogen fertilizer application in two or more treatments. Excessive use of fertilizer can increase blast intensity.",
+        "Flood the field as often as possible.",
+        "Silicon fertilizers (e.g., calcium silicate) can be applied to soils that are silicon deficient to reduce blast. However, because of its high cost, silicon should be applied efficiently. Cheap sources of silicon, such as straws of rice genotypes with high silicon content, can be an alternative. Care should be taken to ensure that the straw is free from blast as the fungus can survive on rice straw and the use of infected straw as a silicon source can spread the disease further.",
+        "Systemic fungicides like triazoles and strobilurins can be used judiciously for control to control blast. A fungicide application at heading can be effective in controlling the disease."
+    ]
+},{
+    "disease":"Tungro",
+    "title":"The most practical measures at present in prevent and managing tungro",
+    "prevention":[
+        "Grow tungro or leafhopper resistant varieties.",
+        "This is the most economical means of managing the disease. There are tungro-resistant varieties available for the Philippines, Malaysia, Indonesia, India, and Bangladesh.",
+        "Contact your local agriculture office for up-to-date lists of varieties available.",
+        "Practice synchronous planting with surrounding farms.",
+        "Delayed or late planting, relative to the average date in a given area, makes the field susceptible for Tungro. Late-planted fields also pose a risk to early planting in the next season.",
+        "Adjust planting times to when green leafhopper are not in season or abundant, if known.",
+        "Plow infected stubbles immediately after harvest to reduce inoculum sources and destroy the eggs and breeding sites of green leaf hopper."
+    ]
+
+}]
