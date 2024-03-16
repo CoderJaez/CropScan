@@ -38,7 +38,6 @@ const CameraScanScreen: React.FC = () => {
     try {
       setIsProcessing(true);
       const imageData = await camera.current?.takePictureAsync({base64: true});
-      console.log('Capturing photo.');
       processImagePrediction(imageData);
     } catch (error) {
       setIsProcessing(false);
@@ -74,8 +73,8 @@ const CameraScanScreen: React.FC = () => {
     const highestPrediction = prediction.indexOf(
       Math.max.apply(null, prediction),
     );
-    console.log(prediction);
-    console.log(Math.max.apply(null, prediction));
+    // console.log(prediction);
+    // console.log(Math.max.apply(null, prediction));
 
     const data = riceData.find(
       item => item.disease === RESULT_MAPPING[highestPrediction],
@@ -139,10 +138,11 @@ const styles = StyleSheet.create({
     left: '50%',
     width: 224,
     height: 224,
+    borderRadius: 10,
     marginLeft: -112,
     marginTop: -112,
     backgroundColor: 'transparent',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: 'black', // Just to see the box clearly, you can remove this line if you want completely transparent box
   },
   bottomOverlay: {

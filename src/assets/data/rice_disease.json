@@ -1,6 +1,7 @@
 [{
     "disease":"Bacterial Blight",
     "title":"Prevent and manage bacterial blight",
+    "image":"./src/assets/images/blight.jpg",
     "prevention": [
         "Use balanced amounts of plant nutrients, especially nitrogen.",
         "Ensure good drainage of fields (in conventionally flooded crops) and nurseries.",
@@ -10,8 +11,10 @@
 },{
     "disease":"Brownspot",
     "title":"Improving soil fertility is the first step in managing brown spot. To do this:",
+    "image":"./src/assets/images/brownspot.jpg",
     "prevention":[
-        "Monitor soil nutrients regularly","Apply required fertilizers for soils that are low in silicon, apply calcium silicate slag before planting",
+        "Monitor soil nutrients regularly",
+        "Apply required fertilizers for soils that are low in silicon, apply calcium silicate slag before planting",
         "Fertilizers, however, can be costly and may take many cropping seasons before becoming effective.", 
         "Use resistant varieties.",
         "Contact your local agriculture office for up-to-date lists of varieties available.",
@@ -22,6 +25,7 @@
 },{
     "disease":"Blast",
     "title":"Prevent and manage blast infection",
+    "image":"./src/assets/images/blast.jpg",
     "prevention":[
         "Adjust planting time. Sow seeds early, when possible, after the onset of the rainy season.",
         "Split nitrogen fertilizer application in two or more treatments. Excessive use of fertilizer can increase blast intensity.",
@@ -31,6 +35,7 @@
     ]
 },{
     "disease":"Tungro",
+    "image":"./src/assets/images/tungro.jpg",
     "title":"The most practical measures at present in prevent and managing tungro",
     "prevention":[
         "Grow tungro or leafhopper resistant varieties.",
