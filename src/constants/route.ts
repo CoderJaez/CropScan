@@ -1,17 +1,21 @@
 import { RiceLeaf } from "./types";
 
 export const screens = {
-    camera:'Camera',
-    rice_leaf:'RiceLeaf',
+    camera: 'Camera',
+    rice_leaf: 'RiceLeaf',
+    home: 'Home',
+    about: 'About'
 
 }
 export type RootStackParamList = {
-    Camera:undefined;
-    RiceLeaf:RiceLeaf|undefined;
+    Camera: undefined;
+    RiceLeaf: RiceLeaf | undefined;
+    Home: undefined;
+    About: undefined;
 }
-export type MenuScreen ={
-    id:number;
-    label:string;
-    screenName:keyof RootStackParamList
+export type MenuScreen = {
+    id: number;
+    label: string;
+    screenName: keyof RootStackParamList
 }
 
